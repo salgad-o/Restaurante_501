@@ -66,3 +66,14 @@ class PlatoForm(forms.ModelForm):
             'categoria': forms.TextInput(attrs={'class': 'input-estilo'}),
             'disponible': forms.CheckboxInput(attrs={'class': 'checkbox-estilo'}),
         }
+
+class OrdenForm(forms.ModelForm):
+    class Meta:
+        model = Orden
+        fields = ['cliente', 'empleado', 'mesa', 'estado_orden']
+        widgets = {
+            'cliente': forms.Select(attrs={'class': 'input-estilo'}),
+            'empleado': forms.Select(attrs={'class': 'input-estilo'}),
+            'mesa': forms.Select(attrs={'class': 'input-estilo'}),
+            'estado_orden': forms.Select(attrs={'class': 'input-estilo'}),
+        }

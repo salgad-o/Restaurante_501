@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from .forms import RegistroForm, ClienteForm, EmpleadoForm
 
 # Create your views here.
-from .forms import RegistroForm, ClienteForm, EmpleadoForm, MesaForm, PlatoForm
+from .forms import RegistroForm, ClienteForm, EmpleadoForm, MesaForm, PlatoForm, OrdenForm
 from .models import Cliente, Empleado, Mesa, Plato, Orden, Factura
 
 
@@ -216,3 +216,32 @@ def eliminar_plato(request, id):
         plato.delete()
         return redirect('/platos/')
     return render(request, 'gestion/eliminar_plato.html', {'plato': plato})
+
+def crear_orden(request):
+    if request.method == 'POST':
+        form = OrdenForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/ordenes/')
+    else:
+        form = OrdenForm()
+    return render(request, 'gestion/crear_orden.html', {'form': form})
+
+def editar_orden(request, id):
+    orden = get_object_or_404(Orden, id=id)
+    if request.method == 'POST':
+        form = OrdenForm(request.POST, instance=orden)
+        if form.is_valid():
+            form.save()
+            return redirect('/ordenes/')
+    else:
+        form = OrdenForm(instance=orden)
+    return render(request, 'gestion/editar_orden.html', {'form': form})
+
+def eliminar_orden(request, id):
+    orden = get_object_or_404(Orden, id=id)
+    if request.method == 'POST':
+        orden.delete()
+        return redirect('/ordenes/')
+    return render(request, 'gestion/eliminar_orden.html', {'orden': orden})
+

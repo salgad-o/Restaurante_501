@@ -135,4 +135,22 @@ urlpatterns = [
         name='eliminar_plato'
     ),
 
+    path(
+        'ordenes/crear/', 
+        views.crear_orden, 
+        name='crear_orden'
+    ),
+
+    path(
+        'ordenes/editar/<int:id>/', 
+        views.editar_orden, 
+        name='editar_orden'
+    ),
+
+    path(
+        'ordenes/eliminar/<int:id>/', 
+        views.eliminar_orden, 
+        name='eliminar_orden'
+    ),
+
 ]
