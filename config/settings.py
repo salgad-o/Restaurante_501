@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'mssql',
         'NAME': 'restaurante_501',
         'USER': 'sa',
-        'PASSWORD': 'Alejandro002',
+        'PASSWORD': 'GokuEsgrande',
         'HOST': r'localhost\SQLEXPRESS',
         'PORT': '1433',
         'OPTIONS': {
@@ -124,3 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = []
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
