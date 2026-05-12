@@ -228,3 +228,11 @@ label {
     display: block;
     margin-bottom: 4px;
 }
+
+.checkbox-estilo {
+    width: 20px;
+    height: 20px;
+    accent-color: #8B0000;
+    cursor: pointer;
+    margin-top: 5px;
+}

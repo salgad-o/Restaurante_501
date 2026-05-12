@@ -99,4 +99,40 @@ urlpatterns = [
         name='eliminar_empleado'
     ),
 
+    path(
+        'mesas/crear/', 
+        views.crear_mesa, 
+        name='crear_mesa'
+    ),
+
+    path(
+        'mesas/editar/<int:id>/',
+        views.editar_mesa, 
+        name='editar_mesa'
+    ),
+
+    path(
+        'mesas/eliminar/<int:id>/', 
+        views.eliminar_mesa, 
+        name='eliminar_mesa'
+    ),
+
+    path(
+        'platos/crear/',
+        views.crear_plato, 
+        name='crear_plato'
+    ),
+
+    path(
+        'platos/editar/<int:id>/', 
+        views.editar_plato, 
+        name='editar_plato'
+    ),
+
+    path(
+        'platos/eliminar/<int:id>/',
+        views.eliminar_plato, 
+        name='eliminar_plato'
+    ),
+
 ]

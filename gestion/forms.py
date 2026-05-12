@@ -30,8 +30,7 @@ class RegistroForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-from .models import Cliente
-from .models import Empleado
+from .models import Cliente, Empleado, Mesa, Plato, Orden, Factura
 
 
 class ClienteForm(forms.ModelForm):
@@ -44,3 +43,26 @@ class EmpleadoForm(forms.ModelForm):
     class Meta:
         model = Empleado
         fields = ['nombre', 'cargo', 'telefono', 'correo']
+
+
+class MesaForm(forms.ModelForm):
+    class Meta:
+        model = Mesa
+        fields = ['numero_mesa', 'capacidad', 'estado_mesa']
+        widgets = {
+            'numero_mesa': forms.NumberInput(attrs={'class': 'input-estilo'}),
+            'capacidad': forms.NumberInput(attrs={'class': 'input-estilo'}),
+            'estado_mesa': forms.Select(attrs={'class': 'input-estilo'}),
+        }
+
+class PlatoForm(forms.ModelForm):
+    class Meta:
+        model = Plato
+        fields = ['nombre_plato', 'descripcion', 'precio', 'categoria', 'disponible']
+        widgets = {
+            'nombre_plato': forms.TextInput(attrs={'class': 'input-estilo'}),
+            'descripcion': forms.Textarea(attrs={'class': 'input-estilo', 'rows': 3}),
+            'precio': forms.NumberInput(attrs={'class': 'input-estilo'}),
+            'categoria': forms.TextInput(attrs={'class': 'input-estilo'}),
+            'disponible': forms.CheckboxInput(attrs={'class': 'checkbox-estilo'}),
+        }

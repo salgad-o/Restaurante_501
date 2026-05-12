@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from .forms import RegistroForm, ClienteForm, EmpleadoForm
 
 # Create your views here.
+from .forms import RegistroForm, ClienteForm, EmpleadoForm, MesaForm, PlatoForm
 from .models import Cliente, Empleado, Mesa, Plato, Orden, Factura
 
 
@@ -158,3 +159,60 @@ def eliminar_empleado(request, id):
         empleado.delete()
         return redirect('/empleados/')
     return render(request, 'gestion/eliminar_empleado.html', {'empleado': empleado})
+
+
+def crear_mesa(request):
+    if request.method == 'POST':
+        form = MesaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/mesas/')
+    else:
+        form = MesaForm()
+    return render(request, 'gestion/crear_mesa.html', {'form': form})
+
+def editar_mesa(request, id):
+    mesa = get_object_or_404(Mesa, id=id)
+    if request.method == 'POST':
+        form = MesaForm(request.POST, instance=mesa)
+        if form.is_valid():
+            form.save()
+            return redirect('/mesas/')
+    else:
+        form = MesaForm(instance=mesa)
+    return render(request, 'gestion/editar_mesa.html', {'form': form})
+
+def eliminar_mesa(request, id):
+    mesa = get_object_or_404(Mesa, id=id)
+    if request.method == 'POST':
+        mesa.delete()
+        return redirect('/mesas/')
+    return render(request, 'gestion/eliminar_mesa.html', {'mesa': mesa})
+
+def crear_plato(request):
+    if request.method == 'POST':
+        form = PlatoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/platos/')
+    else:
+        form = PlatoForm()
+    return render(request, 'gestion/crear_plato.html', {'form': form})
+
+def editar_plato(request, id):
+    plato = get_object_or_404(Plato, id=id)
+    if request.method == 'POST':
+        form = PlatoForm(request.POST, instance=plato)
+        if form.is_valid():
+            form.save()
+            return redirect('/platos/')
+    else:
+        form = PlatoForm(instance=plato)
+    return render(request, 'gestion/editar_plato.html', {'form': form})
+
+def eliminar_plato(request, id):
+    plato = get_object_or_404(Plato, id=id)
+    if request.method == 'POST':
+        plato.delete()
+        return redirect('/platos/')
+    return render(request, 'gestion/eliminar_plato.html', {'plato': plato})
