@@ -77,3 +77,15 @@ class OrdenForm(forms.ModelForm):
             'mesa': forms.Select(attrs={'class': 'input-estilo'}),
             'estado_orden': forms.Select(attrs={'class': 'input-estilo'}),
         }
+
+class FacturaForm(forms.ModelForm):
+    class Meta:
+        model = Factura
+        fields = ['orden', 'subtotal', 'impuesto', 'total_factura', 'metodo_pago']
+        widgets = {
+            'orden': forms.Select(attrs={'class': 'input-estilo'}),
+            'subtotal': forms.NumberInput(attrs={'class': 'input-estilo'}),
+            'impuesto': forms.NumberInput(attrs={'class': 'input-estilo'}),
+            'total_factura': forms.NumberInput(attrs={'class': 'input-estilo'}),
+            'metodo_pago': forms.Select(attrs={'class': 'input-estilo'}),
+        }

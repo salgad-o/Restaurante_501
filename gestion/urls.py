@@ -152,5 +152,22 @@ urlpatterns = [
         views.eliminar_orden, 
         name='eliminar_orden'
     ),
+    path(
+        'facturas/crear/', 
+        views.crear_factura, 
+        name='crear_factura'
+    ),
+
+    path(
+        'facturas/editar/<int:id>/',
+        views.editar_factura, 
+        name='editar_factura'
+    ),
+
+    path(
+        'facturas/eliminar/<int:id>/', 
+        views.eliminar_factura, 
+        name='eliminar_factura'
+    ),
 
 ]

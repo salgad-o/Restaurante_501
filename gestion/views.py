@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from .forms import RegistroForm, ClienteForm, EmpleadoForm
+from .forms import RegistroForm, ClienteForm, EmpleadoForm, MesaForm, PlatoForm, OrdenForm, FacturaForm
 
 # Create your views here.
 from .forms import RegistroForm, ClienteForm, EmpleadoForm, MesaForm, PlatoForm, OrdenForm
@@ -245,3 +245,30 @@ def eliminar_orden(request, id):
         return redirect('/ordenes/')
     return render(request, 'gestion/eliminar_orden.html', {'orden': orden})
 
+def crear_factura(request):
+    if request.method == 'POST':
+        form = FacturaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/facturas/')
+    else:
+        form = FacturaForm()
+    return render(request, 'gestion/crear_factura.html', {'form': form})
+
+def editar_factura(request, id):
+    factura = get_object_or_404(Factura, id=id)
+    if request.method == 'POST':
+        form = FacturaForm(request.POST, instance=factura)
+        if form.is_valid():
+            form.save()
+            return redirect('/facturas/')
+    else:
+        form = FacturaForm(instance=factura)
+    return render(request, 'gestion/editar_factura.html', {'form': form})
+
+def eliminar_factura(request, id):
+    factura = get_object_or_404(Factura, id=id)
+    if request.method == 'POST':
+        factura.delete()
+        return redirect('/facturas/')
+    return render(request, 'gestion/eliminar_factura.html', {'factura': factura})
