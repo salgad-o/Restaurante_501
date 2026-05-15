@@ -1,7 +1,11 @@
 {% extends 'gestion/base.html' %}
-
 {% block content %}
 <h2>Facturas</h2>
+
+<a href="/facturas/crear/">
+    <button>Agregar Factura</button>
+</a>
+
 <table>
     <tr>
         <th>ID</th>
@@ -11,16 +15,25 @@
         <th>Impuesto</th>
         <th>Total</th>
         <th>Método de pago</th>
+        <th>Acciones</th>
     </tr>
     {% for factura in facturas %}
     <tr>
         <td>{{ factura.id }}</td>
-        <td>{{ factura.orden.id }}</td>
-        <td>{{ factura.fecha_factura }}</td>
-        <td>{{ factura.subtotal }}</td>
-        <td>{{ factura.impuesto }}</td>
-        <td>{{ factura.total_factura }}</td>
+        <td>Orden #{{ factura.orden.id }}</td>
+        <td>{{ factura.fecha_factura|date:"d/m/Y H:i" }}</td>
+        <td>${{ factura.subtotal }}</td>
+        <td>${{ factura.impuesto }}</td>
+        <td>${{ factura.total_factura }}</td>
         <td>{{ factura.metodo_pago }}</td>
+        <td>
+            <a href="/facturas/editar/{{ factura.id }}/">
+                <button>Editar</button>
+            </a>
+            <a href="/facturas/eliminar/{{ factura.id }}/">
+                <button>Eliminar</button>
+            </a>
+        </td>
     </tr>
     {% endfor %}
 </table>

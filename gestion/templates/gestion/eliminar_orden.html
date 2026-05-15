@@ -1,0 +1,13 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="card">
+    <h2>¿Eliminar Orden #{{ orden.id }}?</h2>
+    <p>Cliente: {{ orden.cliente.nombre }}</p>
+    <p>Mesa: {{ orden.mesa.numero_mesa }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+        <a href="/ordenes/"><button type="button">Cancelar</button></a>
+    </form>
+</div>
+{% endblock %}

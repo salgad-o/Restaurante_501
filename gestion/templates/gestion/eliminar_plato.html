@@ -1,0 +1,11 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="card">
+    <h2>¿Eliminar {{ plato.nombre_plato }}?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+        <a href="/platos/"><button type="button">Cancelar</button></a>
+    </form>
+</div>
+{% endblock %}
